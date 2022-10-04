@@ -7,6 +7,7 @@ class StackNode:
     def __init__(self,data: int,next= None):
         self.data = data
         self.next = next
+        self.min = data
     
 class Stack:
     def __init__(self,node: StackNode = None):
@@ -24,11 +25,13 @@ class Stack:
     def push(self,val):
         node = StackNode(val)
         if self.top:
-            node.next = self.top
-            self.top = node
-        else:
-            self.top = node
-            
+            node.min = min(self.top.min,node.min)
+        node.next = self.top
+        self.top = node
+
+    def min(self):
+        print(self.top.min)
+    
     #peek
     def peek(self):
         if self.top:
@@ -39,18 +42,29 @@ class Stack:
     def is_empty(self):
         return self.top == None
 
-x = Stack()
+def teste():
+    x = Stack()
 
-x.push(1)
-x.push(2)
-x.push(3)
-x.peek()
-x.pop()
-x.peek()
-x.pop()
-x.peek()
-x.is_empty()
-x.pop()
-x.is_empty()
-x.peek()
-x.pop()
+    x.push(3)
+    x.push(4)
+    x.min()
+    x.push(5)
+    x.min()
+    x.push(2)
+    x.min()
+    x.push(1)
+    x.min()
+    x.pop()
+    x.pop()
+    x.min()
+    x.peek()
+    x.pop()
+    x.peek()
+    x.pop()
+    x.peek()
+    x.is_empty()
+    x.pop()
+    x.is_empty()
+    x.peek()
+    x.pop()
+
