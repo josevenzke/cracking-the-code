@@ -37,29 +37,31 @@ class Queue:
     def is_empty(self):
         print(self.first == None)
 
-x = Queue()
+def teste():
+    x = Queue()
 
-x.add(1)
-x.add(2)
-x.add(3)
-x.add(4)
-x.add(5)
+    x.add(1)
+    x.add(2)
+    x.add(3)
+    x.add(4)
+    x.add(5)
 
-x.peek()
-x.remove()
+    x.peek()
+    x.remove()
 
-x.peek()
-x.remove()
+    x.peek()
+    x.remove()
 
-x.is_empty()
+    x.is_empty()
 
-x.peek()
-x.remove()
+    x.peek()
+    x.remove()
 
-x.peek()
-x.remove()
+    x.peek()
+    x.remove()
 
-x.peek()
-x.remove()
+    x.peek()
+    x.remove()
 
-x.is_empty()
+    x.is_empty()
+
