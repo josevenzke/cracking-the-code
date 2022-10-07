@@ -10,12 +10,11 @@ class StackNode:
         self.min = data
     
 class Stack:
-    def __init__(self,node: StackNode = None):
-        self.top = node
+    def __init__(self):
+        self.top = None
     
     #pop
     def pop(self):
-        print(self.top)
         if not self.top:
             raise EmptyStack
         node = self.top
@@ -35,11 +34,12 @@ class Stack:
     #peek
     def peek(self):
         if self.top:
-            print(self.top.data)
+            return self.top.data
         else:
-            print('empty stack')
+            return None
     #isempty
     def is_empty(self):
+        print(self.top==None)
         return self.top == None
 
 def teste():
@@ -71,12 +71,12 @@ def teste():
 
 #3.3 Stack of Plates: implement a set of stacks
 
-class StackNode:
+class StackNode2:
     def __init__(self,data: int,next= None):
         self.data = data
         self.next = next
 
-class Stack:
+class Stack2:
     def __init__(self,capacity=100):
         self.capacity = capacity
         self.size = 0 
@@ -84,12 +84,12 @@ class Stack:
 
 
     def push(self,data) -> None:
-        node = StackNode(data)
+        node = StackNode2(data)
         node.next = self.top
         self.top = node
         self.size+=1
     
-    def pop(self)-> StackNode:
+    def pop(self)-> StackNode2:
         if self.is_empty():
             raise EmptyStack
         tmp = self.top
@@ -106,8 +106,8 @@ class Stack:
 class SetOfStacks:
     def __init__(self,capacity):
         self.capacity = capacity
-        self.stacks = Stack()
-        self.stacks.push(Stack(self.capacity))
+        self.stacks = Stack2()
+        self.stacks.push(Stack2(self.capacity))
 
     def push(self,val):
         stack = self.stacks.top.data
@@ -137,7 +137,7 @@ class SetOfStacks:
 
     def _add_stack(self):
         print('added new stack')
-        self.stacks.push(Stack(self.capacity))
+        self.stacks.push(Stack2(self.capacity))
         return self.stacks.top.data
     
     def _remove_stack(self):
@@ -147,16 +147,93 @@ class SetOfStacks:
 
 x = SetOfStacks(5)
 
-x.push(1)
-x.push(2)
-x.push(3)
-x.push(4)
-x.peek()
-x.push(5)
-x.peek()
-x.push(6)
-x.push(7)
-x.pop_at(1)
-x.pop()
-x.pop()
-x.peek()
+def teste():
+    x.push(1)
+    x.push(2)
+    x.push(3)
+    x.push(4)
+    x.peek()
+    x.push(5)
+    x.peek()
+    x.push(6)
+    x.push(7)
+    x.pop_at(1)
+    x.pop()
+    x.pop()
+    x.peek()
+
+teste()
+
+#3.4 Implemente a queue via two stacks
+class MyQueue():
+    def __init__(self):
+        self.stack_oldest = []
+        self.stack_newest = []
+
+    def push(self,val):
+        self.stack_newest.append(val)
+    
+    def shift_stack(self):
+        if not self.stack_oldest:
+            while self.stack_newest:
+                self.stack_oldest.append(self.stack_newest.pop())
+    
+    def peek(self):
+        self.shift_stack()
+        print(self.stack_oldest, self.stack_newest)
+        print(self.stack_oldest[-1])
+    
+    def remove(self):
+        self.shift_stack()
+        print(self.stack_oldest, self.stack_newest)
+        return self.stack_oldest.pop()
+
+def teste():
+    x = MyQueue()
+    x.push(1)
+    x.push(2)
+    x.push(3)
+    x.peek()
+    x.push(4)
+    x.push(5)
+    x.peek()
+    print(x.remove())
+    print(x.remove())
+    print(x.remove())
+
+    x.peek()
+
+teste()
+
+#3.5 Sort stack, can only use one aditional stack
+
+def sort_stack(stack):
+    tmp_stack = Stack()
+    while not stack.is_empty():
+        tmp = stack.pop()
+        print(tmp_stack.is_empty())
+        while not tmp_stack.is_empty() and tmp.data<tmp_stack.peek():
+            stack.push(tmp_stack.pop())
+        tmp_stack.push(tmp)
+    while not tmp_stack.is_empty():
+        stack.push(tmp_stack.pop())
+
+def teste():
+    x = Stack()
+    x.push(1)
+    x.push(4)
+    x.push(2)
+    x.push(3)
+    x.push(8)
+    x.push(5)
+    d = sort_stack(x)
+    print(d.pop().data)
+    print(d.pop().data)
+    print(d.pop().data)
+    print(d.pop().data)
+    print(d.pop().data)
+    print(d.pop().data)
+    print(d.pop().data)
+    print(d.pop().data)
+
+teste()
