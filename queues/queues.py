@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 
+
 class Node:
     def __init__(self, data: int,next:object = None) -> None:
         self.data = data
@@ -64,4 +65,12 @@ def teste():
     x.remove()
 
     x.is_empty()
+
+#3.4 queue via stacks: implement a queue with two stacks
+# 1 2 3 4
+# 1 2 3 4
+# 4 3 2 1 
+# 2 stacks: i reverse the current stack everytime something gets popped
+
+# MyQueue.__call__() -> __new__(TYPE) -> referencia do objeto em memoria -> __init__(referencia) -> self
 
