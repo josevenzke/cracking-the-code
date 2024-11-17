@@ -1,6 +1,6 @@
 import sys
 
-#My Solution:
+#My Solutions:
 #Space O(n)
 #Time O(n+n) => O(n)
 class Solution:
